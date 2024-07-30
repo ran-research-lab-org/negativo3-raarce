@@ -35,10 +35,22 @@ jobs:
         expected-output: Caca
         comparison-method: regex
         timeout: 10
+    - name: A003
+      id: a003
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: A003
+        setup-command: make
+        command: "./main"
+        input: ''
+        expected-output: tururu
+        comparison-method: regex
+        timeout: 10
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         A001_RESULTS: "${{steps.a001.outputs.result}}"
         A002_RESULTS: "${{steps.a002.outputs.result}}"
+        A003_RESULTS: "${{steps.a003.outputs.result}}"
       with:
-        runners: a001,a002
+        runners: a001,a002,a003
